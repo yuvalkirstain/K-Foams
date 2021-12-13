@@ -28,6 +28,7 @@ TODO
 - [ ] 3D-print a arbitrary stl file. 
 - [ ] 3D-print k-foams mesh.
 - [ ] Write instructions.
+- [ ] Update Table of Contents.
 
 ## In Progress
 - [ ] Find relevant tools.
