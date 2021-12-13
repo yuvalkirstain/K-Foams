@@ -9,11 +9,19 @@ TODO
 - [In Progress](#In Progress)
 - [Done](#Done)
 
+## Installation
+1. Create a conda env with python 3.6.
+2. Install:
+   - `conda install -c conda-forge pymesh2`
+   - `pip install jupyter`
+   - `pip install matplotlib`
+   - `pip install plotly`
+
 ## Instructions
 TODO
 
 ## TODO
-- [ ] Create requirements file for easy setup.
+- [ ] Create requirements file for easy setup and replace the hacky installation instructions.
 - [ ] Write readme introduction.
 - [ ] Implement algorithm from density, stretch, and angle to k-foams graph.
 - [ ] Turn k-foams graph to mesh.
