@@ -13,7 +13,7 @@ def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05) 
     :param edge_thickness: thickness of edges.
     :return mesh: the resulting mesh.
     """
-    wire_network = WireNetwork().create_from_data(vertices.T, edges)
+    wire_network = WireNetwork().create_from_data(vertices, edges)
     inflator = Inflator(wire_network)
     inflator.inflate(edge_thickness, allow_self_intersection=True, per_vertex_thickness=False)
     mesh = inflator.mesh
@@ -23,9 +23,9 @@ def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05) 
 def plot_graph(vertices: ndarray, edges: ndarray) -> None:
     fig = go.Figure()
 
-    for v1_idx, v2_idx in edges.tolist():
-        x1, y1, z1 = vertices[:, v1_idx]
-        x2, y2, z2 = vertices[:, v2_idx]
+    for v1_idx, v2_idx in edges:
+        x1, y1, z1 = vertices[v1_idx]
+        x2, y2, z2 = vertices[v2_idx]
         fig.add_trace(go.Scatter3d(
             x=[x1, x2], y=[y1, y2], z=[z1, z2],
             marker=dict(
