@@ -1,7 +1,7 @@
 from pymesh import Mesh
 from pymesh.wires import WireNetwork, Inflator
 from pymesh.meshio import save_mesh
-from numpy import ndarray
+from numpy import ndarray, array
 import plotly.graph_objects as go
 
 
@@ -13,7 +13,19 @@ def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05) 
     :param edge_thickness: thickness of edges.
     :return mesh: the resulting mesh.
     """
-    wire_network = WireNetwork().create_from_data(vertices, edges)
+    V = []
+    E = []
+    for v in vertices:
+        V.append(10 * array(v))
+    for e in edges:
+        v1, v2 = e
+        if (v2, v1) in E:
+            continue
+        E.append((v1, v2))
+
+    V, E = array(V), array(E)
+
+    wire_network = WireNetwork().create_from_data(V, E)
     inflator = Inflator(wire_network)
     inflator.inflate(edge_thickness, allow_self_intersection=True, per_vertex_thickness=False)
     mesh = inflator.mesh
