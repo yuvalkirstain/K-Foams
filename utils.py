@@ -5,18 +5,19 @@ from numpy import ndarray, array
 import plotly.graph_objects as go
 
 
-def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05) -> Mesh:
+def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05, expansion: float = 20) -> Mesh:
     """
     converts a graph into a mesh object. see https://pymesh.readthedocs.io/en/latest/wire_mesh.html for more details.
     :param vertices: coordinates of vertices.
     :param edges: A list of vertex index pairs.
     :param edge_thickness: thickness of edges.
+    :param expansion: thickness of edges.
     :return mesh: the resulting mesh.
     """
     V = []
     E = []
     for v in vertices:
-        V.append(10 * array(v))
+        V.append(expansion * array(v))
     for e in edges:
         v1, v2 = e
         if (v2, v1) in E:
