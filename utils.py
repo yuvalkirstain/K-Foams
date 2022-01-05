@@ -2,6 +2,8 @@ from pymesh import Mesh
 from pymesh.wires import WireNetwork, Inflator
 from pymesh.meshio import save_mesh
 from numpy import ndarray, array
+import math
+import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 
@@ -33,7 +35,27 @@ def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05, 
     return mesh
 
 
-def plot_graph(vertices: ndarray, edges: ndarray) -> None:
+def plot_graph_2d(vertices: ndarray, edges: ndarray) -> None:
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    x_values = [round(val[0]) for val in vertices]
+    y_values = [round(val[1]) for val in vertices]
+
+    for xi in range(math.floor(min(x_values)), math.floor(max(x_values)) + 1):
+        ax.axvline(x=xi, linestyle='--')
+    for yi in range(math.floor(min(y_values)), math.floor(max(y_values)) + 1):
+        ax.axhline(y=yi, linestyle='--')
+
+    for p1_idx, p2_idx in edges:
+        ax.plot(*zip(vertices[p1_idx], vertices[p2_idx]), 'ko-')
+
+    ax.set_aspect('equal')
+    fig.set_size_inches((10, 10))
+    fig.show()
+
+
+def plot_graph_3d(vertices: ndarray, edges: ndarray) -> None:
     fig = go.Figure()
 
     for v1_idx, v2_idx in edges:
