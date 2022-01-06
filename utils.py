@@ -76,7 +76,7 @@ def plot_graph_3d(vertices: ndarray, edges: ndarray) -> None:
     fig.show()
 
 
-def plot_mesh(mesh: Mesh) -> None:
+def plot_mesh_3d(mesh: Mesh) -> None:
     """
     plots a mesh.
     :param mesh: a mesh object.
@@ -89,6 +89,26 @@ def plot_mesh(mesh: Mesh) -> None:
             i=mesh.faces[:, 0],
             j=mesh.faces[:, 1],
             k=mesh.faces[:, 2],
+            showscale=True,
+            colorscale='agsunset',
+            opacity=0.50,
+        )
+    ])
+
+    fig.show()
+
+
+def plot_mesh_2d(mesh: Mesh) -> None:
+    """
+    plots a mesh.
+    :param mesh: a mesh object.
+    """
+    fig = go.Figure(data=[
+        go.Mesh3d(
+            x=mesh.vertices[:, 0],
+            y=mesh.vertices[:, 1],
+            i=mesh.faces[:, 0],
+            j=mesh.faces[:, 1],
             showscale=True,
             colorscale='agsunset',
             opacity=0.50,
