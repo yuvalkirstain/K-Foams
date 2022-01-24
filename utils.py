@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 
-def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05, expansion: float = 20) -> Mesh:
+def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float, expansion: float = 20) -> Mesh:
     """
     converts a graph into a mesh object. see https://pymesh.readthedocs.io/en/latest/wire_mesh.html for more details.
     :param vertices: coordinates of vertices.
@@ -30,7 +30,7 @@ def graph2mesh(vertices: ndarray, edges: ndarray, edge_thickness: float = 0.05, 
 
     wire_network = WireNetwork().create_from_data(V, E)
     inflator = Inflator(wire_network)
-    inflator.inflate(edge_thickness, allow_self_intersection=True, per_vertex_thickness=False)
+    inflator.inflate(edge_thickness, allow_self_intersection=False, per_vertex_thickness=False)
     mesh = inflator.mesh
     return mesh
 
