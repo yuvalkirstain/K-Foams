@@ -11,3 +11,6 @@ This repository implements the paper [Orthotropic k-nearest foams for additive m
 
 ## Instructions
 Please follow `example.ipynb` to see basic usage of our repo.
+
+## Results
+To see the results please choose the relevant file from `results` directory.
